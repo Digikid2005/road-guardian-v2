@@ -32,6 +32,17 @@ useEffect(() => {
         });
       }
     )
+    .on('postgres_changes', {
+      event: 'UPDATE', schema: 'public', table: 'accidents'   // NEW
+    }, (payload) => {
+      setIncidents(prev =>
+        prev.map(i => i.id === payload.new.id ? payload.new : i)
+      );
+      // If activeIncident updated, refresh it too
+      if (activeIncident?.id === payload.new.id) {
+        setActiveIncident(payload.new);
+      }
+    })  
     .subscribe((status) => {
       console.log("Realtime status:", status);
     });

@@ -1,0 +1,25 @@
+-- hospitals table (NEW — run this in Supabase SQL Editor)
+CREATE TABLE hospitals (
+  id            UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name          TEXT NOT NULL,
+  address       TEXT NOT NULL,
+  phone_number  TEXT NOT NULL,       -- Twilio will call this number
+  latitude      FLOAT NOT NULL,
+  longitude     FLOAT NOT NULL,
+  is_active     BOOLEAN DEFAULT true,
+  created_at    TIMESTAMPTZ DEFAULT now()
+);
+
+-- Enable Row Level Security (public read for the agent)
+ALTER TABLE hospitals ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow service role full access" ON hospitals
+  FOR ALL USING (true);
+
+-- Sample hospital data (replace with real hospitals)
+INSERT INTO hospitals (name, address, phone_number, latitude, longitude) VALUES
+  ('AIIMS Bhubaneswar', 'Sijua, Patrapada, Bhubaneswar', '+918000000001', 20.2530, 85.7762),
+  ('Sum Hospital',      'K8, Kalinga Nagar, Bhubaneswar', '+918000000002', 20.3002, 85.8192),
+  ('Capital Hospital',  'Unit 6, Bhubaneswar',            '+918000000003', 20.2711, 85.8411),
+  ('Apollo Hospitals',  'Plot 251, Sainik School Rd',     '+918000000004', 20.2946, 85.8197),
+  ('Hi-Tech Medical',   'Plot 88, Kalinga Nagar',         '+918000000005', 20.3086, 85.8148);
