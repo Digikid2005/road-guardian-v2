@@ -1,7 +1,7 @@
 fastapi==0.111.0
 uvicorn==0.30.0
-langgraph==0.1.14
-langchain-core==0.2.10
+langgraph
+langchain-core
 supabase==2.4.6
 twilio==9.1.0
 python-dotenv==1.0.1
