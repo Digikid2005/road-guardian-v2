@@ -3,7 +3,7 @@ uvicorn==0.30.0
 langgraph
 langchain-core
 supabase==2.4.6
-twilio==9.1.0
-python-dotenv==1.0.1
-pydantic==2.7.0
 httpx==0.27.0
+python-dotenv==1.0.1
+pydantic>=2.7.0
+twilio>=9.0.0

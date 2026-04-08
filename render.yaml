@@ -1,8 +1,9 @@
+
 services:
   - type: web
     name: road-guardian-agent
     runtime: docker
-    plan: starter          # $7/month — always-on (critical for emergency systems)
+    plan: starter
     healthCheckPath: /health
     envVars:
       - key: SUPABASE_URL
@@ -14,8 +15,6 @@ services:
       - key: TWILIO_AUTH_TOKEN
         sync: false
       - key: TWILIO_FROM_NUMBER
-        sync: false
-      - key: TWILIO_TWIML_URL
         sync: false
       - key: WEBHOOK_SECRET
         sync: false
